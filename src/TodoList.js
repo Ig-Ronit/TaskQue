@@ -3,11 +3,19 @@ import { useState } from "react";
 function TodoApp() {
   const [task, setTask] = useState("");
   const [todos, setTodos] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);
 
   function addTodo() {
     if (task.trim() === "") return;
 
-    setTodos([...todos, task]);
+    if (editIndex !== null) {
+      const updated = [...todos];
+      updated[editIndex] = task;
+      setTodos(updated);
+      setEditIndex(null);
+    } else {
+      setTodos([...todos, task]);
+    }
     setTask("");
   }
 
@@ -16,15 +24,8 @@ function TodoApp() {
   }
 
   function editTodo(index) {
-    const newTask = prompt("Edit task");
-
-    if (!newTask || newTask.trim() === "") return;
-
-    setTodos((prev) => {
-      const updated = [...prev];
-      updated[index] = newTask.trim();
-      return updated;
-    });
+    setTask[todos[index]];
+    setEditIndex(index);
   }
 
   return (
@@ -39,11 +40,10 @@ function TodoApp() {
           onChange={(e) => setTask(e.target.value)}
         />
         <button className="btn btn-primary ms-2" onClick={addTodo}>
-          Add
+          {editIndex !== null ? "Update" : "Add"}
         </button>
       </div>
 
-      {/* List */}
       <ul className="list-group mt-3">
         {todos.map((todo, index) => (
           <li
