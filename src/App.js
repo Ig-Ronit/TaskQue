@@ -1,13 +1,15 @@
 import "./styles.css";
-
-import Counter from "./Counter";
-import ListManager from "./TodoList";
+import { useState } from "react";
+import TaskInput from "./Components/TaskInput";
+import TaskList from "./Components/TaskList";
 
 export default function App() {
+  const [tasks, setTasks] = useState([]);
   return (
     <div className="App">
-      <h2>Todo List</h2>
-      <ListManager />
+      <h2>TaskQue</h2>
+      <TaskInput setTasks={setTasks} />
+      <TaskList tasks={tasks} setTasks={setTasks} />
     </div>
   );
 }
