@@ -1,13 +1,15 @@
-const TaskItem = ({ task, setTasks }) => {
+const TaskItem = ({ task, setTasks, setEditTask }) => {
   const deleteTask = () => {
     setTasks((prev) => prev.filter((t) => t.id !== task.id));
   };
+  const handleEdit = () => {
+    setEditTask(task);
+  };
 
-  const editTask = () => {};
   return (
     <div>
       <span>{task.text}</span>
-      <button onClick={editTask}>Edit</button>
+      <button onClick={handleEdit}>Edit</button>
       <button onClick={deleteTask}>Delete</button>
     </div>
   );
