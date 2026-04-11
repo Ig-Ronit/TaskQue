@@ -2,7 +2,7 @@ import TaskItem from "./TaskItem";
 
 const TaskList = ({ tasks, setTasks, setEditTask }) => {
   return (
-    <div>
+    <div className="border rounded-lg divide-y">
       {tasks.map((task) => (
         <TaskItem
           key={task.id}

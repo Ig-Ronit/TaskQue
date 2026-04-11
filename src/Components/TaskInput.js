@@ -28,14 +28,17 @@ const TaskInput = ({ setTasks, editTask, setEditTask }) => {
   }, [editTask]);
 
   return (
-    <div>
+    <div className="flex items-center gap-2">
       <input
+        className="w-full px-3 py-2 border rounded-lg shadow-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
         type="text"
         placeholder="Add a Task"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <button onClick={handleAdd}>{editTask ? "Update" : "Add"}</button>
+      <button className="bg-blue-600 px-3 py-1 rounded-md" onClick={handleAdd}>
+        {editTask ? "Update" : "Add"}
+      </button>
     </div>
   );
 };

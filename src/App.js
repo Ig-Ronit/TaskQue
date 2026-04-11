@@ -1,10 +1,16 @@
 import "./styles.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TaskInput from "./Components/TaskInput";
 import TaskList from "./Components/TaskList";
 
 export default function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const stored = localStorage.getItem("tasks");
+    return stored ? JSON.parse(stored) : [];
+  });
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
   const [editTask, setEditTask] = useState(null);
   return (
     <div className="App">
