@@ -8,35 +8,34 @@ const TaskInput = ({ setTasks, editTask, setEditTask }) => {
 
     if (editTask) {
       setTasks((prev) =>
-        prev.map((task) =>
-          task.id === editTask.id ? { ...task, text: text } : task
-        )
+        prev.map((task) => (task.id === editTask.id ? { ...task, text } : task))
       );
-
       setEditTask(null);
-      setText("");
     } else {
       setTasks((prev) => [...prev, { id: Date.now(), text, completed: false }]);
-      setText("");
     }
+
+    setText("");
   };
 
   useEffect(() => {
-    if (editTask) {
-      setText(editTask.text);
-    }
+    if (editTask) setText(editTask.text);
   }, [editTask]);
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex gap-2">
       <input
-        className="w-full px-3 py-2 border rounded-lg shadow-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        className="flex-1 px-4 py-2 rounded-xl bg-white/30 placeholder-white text-white outline-none focus:ring-2 focus:ring-white transition"
         type="text"
-        placeholder="Add a Task"
+        placeholder="✨ Add a task..."
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <button className="bg-blue-600 px-3 py-1 rounded-md" onClick={handleAdd}>
+
+      <button
+        onClick={handleAdd}
+        className="bg-white text-black px-4 py-2 rounded-xl hover:scale-105 transition font-semibold"
+      >
         {editTask ? "Update" : "Add"}
       </button>
     </div>

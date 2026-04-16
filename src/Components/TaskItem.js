@@ -2,43 +2,52 @@ const TaskItem = ({ task, setTasks, setEditTask }) => {
   const deleteTask = () => {
     setTasks((prev) => prev.filter((t) => t.id !== task.id));
   };
-  const handleEdit = () => {
-    setEditTask(task);
-  };
+
+  const handleEdit = () => setEditTask(task);
+
   const handleToggle = () => {
-    setTasks(
-      (prev) =>
-        prev.map((item) =>
-          item.id === task.id ? { ...item, completed: !item.completed } : item
-        ),
-      console.log(task)
+    setTasks((prev) =>
+      prev.map((item) =>
+        item.id === task.id ? { ...item, completed: !item.completed } : item
+      )
     );
   };
 
   return (
-    <div className="w-full flex items-center gap-3">
-      <label className="relative inline-flex items-center cursor-pointer">
-        <input
-          type="checkbox"
-          checked={task.completed}
-          onChange={handleToggle}
-          className="sr-only peer"
-        />
-        <div className="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-500 transition"></div>
-        <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition peer-checked:translate-x-5"></div>
-      </label>
-      <span className={`${task.completed ? "line-through text-gray-400" : ""}`}>
+    <div className="flex items-center justify-between bg-white/20 backdrop-blur-md p-3 rounded-xl hover:scale-[1.02] transition">
+      {/* Toggle */}
+      <input
+        type="checkbox"
+        checked={task.completed}
+        onChange={handleToggle}
+        className="w-5 h-5 accent-green-400 cursor-pointer"
+      />
+
+      {/* Text */}
+      <span
+        className={`flex-1 ml-3 ${
+          task.completed ? "line-through text-white/50" : ""
+        }`}
+      >
         {task.text}
       </span>
-      <button
-        className="bg-green-400 px-3 py-1 rounded-lg"
-        onClick={handleEdit}
-      >
-        Edit
-      </button>
-      <button className="bg-red-500 px-3 py-1 rounded-lg" onClick={deleteTask}>
-        Delete
-      </button>
+
+      {/* Buttons */}
+      <div className="flex gap-2">
+        <button
+          onClick={handleEdit}
+          className="px-3 py-1 bg-green-400 text-black rounded-lg hover:scale-105 transition"
+        >
+          Edit
+        </button>
+
+        <button
+          onClick={deleteTask}
+          className="px-3 py-1 bg-red-500 rounded-lg hover:scale-105 transition"
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 };
