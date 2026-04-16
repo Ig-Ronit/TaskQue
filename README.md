@@ -1,5 +1,4 @@
-# ReactPractice
-TaskQue 🚀
+#TaskQue 🚀
 
 Features:
 - Add / Edit / Delete Tasks
