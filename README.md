@@ -2,14 +2,11 @@
 
 Features:
 - Add / Edit / Delete Tasks
-- Filters + Search
+- Filters 
 - Local Storage Persistence
-- Dark Mode
-
 
 Tech Stack:
 - React
 - Tailwind CSS
-- 
 
-Live Demo: (Will Update Soon)
+Live Demo: taskquewebapp.vercel.app
